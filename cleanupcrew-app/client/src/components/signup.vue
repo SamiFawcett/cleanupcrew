@@ -12,7 +12,7 @@
             <ion-label full>{{item.name}}</ion-label>
           </ion-item>
         </ion-list>
-        <ion-button @click="goToPage2" full>Go To Page II</ion-button>
+        <ion-button @click="goToIndex" full>Go To Page II</ion-button>
 
       </ion-content>
     </ion-page>
@@ -24,12 +24,12 @@ export default {
   name: 'App',
   data () {
     return {
-      items: [{id: 0, name:'Ahmed'},{id:1, name: 'Naima'}]
+      items: [{id: 0, name:'Ahmed'},{id:1, name: 'Naima'},{id:2, name: 'new item'}]
     }
   },
   methods: {
-    goToPage2 () {
-      this.$router.push('page2')
+    goToIndex () {
+      this.$router.push('/')
     }
   }
 }
