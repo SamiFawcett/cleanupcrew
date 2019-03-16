@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import GSignInButton from 'vue-google-signin-button'
+import style from './index.css'
 
 import router from './router'
 
