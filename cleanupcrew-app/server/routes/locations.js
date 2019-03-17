@@ -25,9 +25,16 @@ router.post('/loc', function(req, res, next){
 
 })
 
+/*
+
 //get all locations
 router.get('/loc', function(req, res, next){
-  db.collection('cc_loc').forEach((doc) => {
-    
+  var loc_arr = {};
+  var iter = 0;
+  db.collection('cc_loc').find().forEach((doc) => {
+    loc_arr[iter] = doc;
   })
+  res.send(loc_arr);
 });
+
+*/

@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var uri = "mongodb+srv://admin:gjLBoc0wLxxnSLPL@cc-8by1p.mongodb.net/test?retryWrites=true";
+var uri = "mongodb+srv://admin:yPMplkNDjHynJcZr@cc-8by1p.mongodb.net/test?retryWrites=true";
 var _db;
 
 module.exports = {
