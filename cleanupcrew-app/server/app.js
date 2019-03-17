@@ -8,6 +8,7 @@ var db = require('./database/db.js');
 
 var locationsRouter = require('./routes/locations');
 var usersRouter = require('./routes/users');
+var eventsRouter = require('./routes/events');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
 app.use('/', locationsRouter);
+app.use('/', eventsRouter);
 
 
 module.exports = app;
