@@ -70,7 +70,9 @@ export default {
           } else {
             console.log(response)
             this.$session.set('session_id', user_id)
-            this.$router.push('/search')
+            if(this.$session.get("is_organizer") == true) {
+              this.$router.push('/dash')
+            }
           }
         })
         .catch((errors) => {
