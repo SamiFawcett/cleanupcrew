@@ -5,7 +5,6 @@ var mongodb = require('mongodb');
 
 
 router.post('/api/loc', function(req, res, next){
-  console.log("reached");
   var lat = req.query['lat'];
   var long = req.query['long'];
   var event_id = req.query['event_id']
@@ -19,6 +18,7 @@ router.post('/api/loc', function(req, res, next){
     "user_id":user_id,
     "date":time_stamp
   };
+  console.log(time_stamp);
   var db = mongoUtil.getDb();
   var c = db.collection('cc_loc').insertOne(loc);
   console.log("successfully added location to database");
