@@ -6,6 +6,7 @@ import Search from '@/components/Search'
 import Dash from '@/components/Dash'
 import Event from '@/components/EventDisplay'
 import GoogleSignIn from '@/components/GoogleSignIn'
+import Map from '@/components/Map'
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ export default new Router({
       name: 'EventDisplay',
       component: Event,
       props: true
+    },
+    {
+      path: '/map',
+      name: 'MapTest',
+      component: Map
     }
   ]
 })
