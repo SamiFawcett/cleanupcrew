@@ -14,7 +14,8 @@ function inCleanupRegion(userLat, userLong, originLat, originLong, regionRadius)
 }
 
 /*
- * Computes the distance between two latitude and longitude locations.
+ * Computes the distance between two latitude and longitude locations
+ * using the Haversine formula:
  * https://en.wikipedia.org/wiki/Haversine_formula
  *
  * @param lat1 The latitude of the first location.
