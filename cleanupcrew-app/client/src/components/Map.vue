@@ -15,7 +15,7 @@
 <script>
   Vue.use(VueGoogleMaps, {
     load: {
-      key: 'AIzaSyDf43lPdwlF98RCBsJOFNKOkoEjkwxb5Sc'
+      key: 'AIzaSyDs-DZDyN0p3S4O9V0K8b7X3GyxfeHaKis'
     },
     // Demonstrating how we can customize the name of the components
     installComponents: false,
