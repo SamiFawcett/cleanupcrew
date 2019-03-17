@@ -2,6 +2,7 @@
   <ion-app>
     <ion-page class="show-page">
       <ion-header>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
         <ion-toolbar>
           <ion-title>Select the location of your cleanup:</ion-title>
         </ion-toolbar>
