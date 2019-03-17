@@ -10,7 +10,7 @@
         <ion-searchbar showCancelButton placeholder="Cleanups"></ion-searchbar>
         <ion-list>
           <ion-item v-for="item of items" v-bind:key="item.id">
-            <ion-label full>{{item.name}}</ion-label>
+            <ion-label @click="goToCleanup(item.id)" full>{{item.name}}</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>
@@ -20,15 +20,18 @@
 
 <script>
 export default {
+  name: 'Search',
   data() {
     return {
-      items: [{id: 0, name: "test1"},{id: 1, name: "test2"}]
+      items: [{id: 0, name: "test1"},{id: 1, name: "test2"},{id: 2, name: "test1"},
+              {id: 3, name: "test2"},{id: 4, name: "test1"},{id: 5, name: "test2"},
+              {id: 6, name: "test1"},{id: 7, name: "test2"},{id: 8, name: "test1"},
+              {id: 9, name: "test2"},{id: 10, name: "test1"},{id: 11, name: "test2"}]
     }
   },
-  name: 'App',
   methods: {
-    goToCleanup () {
-      this.$router.push('/search')
+    goToCleanup: function(eventID) {
+      this.$router.push('/event/'+eventID)
     }
   }
 }
