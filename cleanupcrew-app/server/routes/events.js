@@ -71,23 +71,17 @@ router.post('/api/event_add_user', function(req, res, next){
 router.delete('/api/event_delete_user', function(req, res, next){
   var public_id = req.query['public_id'];
   var user_id = req.query['user_id'];
-  var event;
   var db = mongoUtil.getDb();
-  var result_cursor = db.collection('cc_event').findOne({public_id : public_id});
-  result_cursor.then(function(result){
-    event = result;
-    for(var i = 0; i < event.length; i++){
-      if(event['event_users'] == user_id ){
-        event.spice(i, 1);
-      }
-    }
-      console.log(event['event_users']);
-    res.send('success');
-  })
+  var result_cursor = db.collection('cc_event').updateOne({public_id : public_id}, {$pull: {'event_users':  user_id } }, false);
+  res.send('success');
 })
 
+//delete entire event
 router.delete('/api/event', function(req, res, next){
-
+  var public_id = req.query['public_id'];
+  var db = mongoUtil.getDb();
+  var result_cursor = db.collection('cc_event').deleteOne({public_id: public_id}, true);
+  res.send('success');
 })
 
 
