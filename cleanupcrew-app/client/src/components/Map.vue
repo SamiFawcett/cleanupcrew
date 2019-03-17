@@ -3,20 +3,17 @@
     <ion-page class="show-page">
       <ion-header>
         <ion-toolbar>
-          <ion-title>Specify Cleanup Location</ion-title>
+          <ion-title>Select the location of your cleanup:</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="content" padding>
-        <div id="root">
-          <google-map :center="center" :zoom="7" style="width: 100%; height: 500px">
-            <!-- <google-marker v-for="m in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position"></google-marker> -->
-          </google-map>
-        </div>
       </ion-content>
     </ion-page>
   </ion-app>
 </template>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.0/vue.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+
 <script>
   Vue.use(VueGoogleMaps, {
     load: {
