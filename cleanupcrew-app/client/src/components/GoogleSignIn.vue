@@ -39,9 +39,13 @@ export default {
     onSignInSuccess (googleUser) {
       const profile = googleUser.getBasicProfile() // etc etc
       console.log(profile);
+      this.goToSearch();
     },
     onSignInError (error) {
       console.log('Big problem', error)
+    },
+    goToSearch () {
+      this.$router.push('/search')
     }
   }
 }
@@ -52,7 +56,7 @@ export default {
     /* This is where you control how the button looks. Be creative! */
     display: inline-block;
     padding: 15px 15px;
-    border-radius: 3px;
+    border-radius: 50px;
     background-color: #3c82f7;
     color: #fff;
     margin-top: 10px;
