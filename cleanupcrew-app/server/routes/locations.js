@@ -12,10 +12,10 @@ router.post('/api/loc', function(req, res, next){
   var date = req.query['date'];
   var time_stamp = new Date(date);
   var loc = {
-    "lat":lat,
-    "long":long,
-    "event_id":event_id,
-    "user_id":user_id,
+    "lat":parseFloat(lat),
+    "long":parseFloat(long),
+    "event_id":parseInt(event_id),
+    "user_id":parseInt(user_id),
     "date":time_stamp
   };
   console.log(time_stamp);
