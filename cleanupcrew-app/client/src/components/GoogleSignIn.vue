@@ -7,13 +7,16 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="content" padding>
-        <ion-row style="height: 30%"></ion-row>
+        <ion-row style="height: 20%"></ion-row>
+        <ion-thumbnail slot="start">
+          <img class='small-logo' :src='logo'></img>
+        </ion-thumbnail>
         <ion-title>
           Sign in with Google
         </ion-title>
-        <ion-item-divider>
-          <div style="width: 100%; text-align: center;">to continue with Clean Up Crew</div>
-        </ion-item-divider>
+        <ion-title>
+          <p style="font-size:14px;">to continue with Clean Up Crew</p>
+        </ion-title>
         <g-signin-button
           :params="googleSignInParams"
           @success="onSignInSuccess"
@@ -27,10 +30,14 @@
 </template>
 
 <script>
+import Logo from "@/img/logo.png"
+import axios from "axios";
+
 export default {
-  name: 'GoogleSignIn',
+  name: "GoogleSignIn",
   data () {
     return {
+      logo: Logo,
       googleSignInParams: {
         client_id: '889061426778-8stvujmooeeuduncj5f3ouiep7iplt1r.apps.googleusercontent.com'
       }
@@ -39,32 +46,68 @@ export default {
   methods: {
     onSignInSuccess (googleUser) {
       const profile = googleUser.getBasicProfile() // etc etc
-      console.log(profile);
-      this.goToSearch();
+      var user_id = profile.Eea;
+      var user_fullname = profile.ig;
+      var user_email = profile.U3;
+
+      var o_str = "";
+      if(this.$session.get("is_organizer") == true){
+        o_str = "&organizer=true";
+      }
+      axios.get("/api/user?id_token=" + user_id)
+        .then((response) => {
+          console.log(response.data);
+          if(response.data == ""){
+            axios.post("/api/user?id_token=" + user_id + "&name=" + user_fullname + "&email=" + user_email + o_str)
+                .then((response) => {
+                    console.log(response)
+                    this.$session.set('session_id', user_id)
+                    this.$router.push('/search')
+                })
+                .catch((errors) => {
+                    console.log("Database Error: Creating User")
+                    console.log(errors)
+                    this.$router.push('/')
+                })
+          } else {
+            console.log(response)
+            this.$session.set('session_id', user_id)
+            this.$router.push('/search')
+          }
+        })
+        .catch((errors) => {
+          console.log("Database Error: Getting User")
+          console.log(errors)
+        })
+
     },
     onSignInError (error) {
       console.log('Big problem', error)
-    },
-    goToSearch () {
-      this.$router.push('/search')
     }
   }
 }
 </script>
 
 <style>
-  .g-signin-button {
-    /* This is where you control how the button looks. Be creative! */
-    display: inline-block;
-    padding: 15px 15px;
-    border-radius: 50px;
-    background-color: #3c82f7;
-    color: #fff;
-    margin-top: 10px;
-    /* box-shadow: 0 3px 0 #0f69ff; */
-    font-size: 16px;
-  }
-  .fa-google{
-    padding-right:10px;
-  }
+.small-logo{
+  width:40%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.g-signin-button {
+  /* This is where you control how the button looks. Be creative! */
+  display: inline-block;
+  padding: 15px 15px;
+  border-radius: 50px;
+  background-color: #3c82f7;
+  color: #fff;
+  margin-top: 10px;
+  /* box-shadow: 0 3px 0 #0f69ff; */
+  font-size: 16px;
+}
+
+.fa-google{
+  padding-right:10px;
+}
 </style>

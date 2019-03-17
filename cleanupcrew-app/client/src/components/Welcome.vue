@@ -14,7 +14,7 @@
             </ion-thumbnail>
           </ion-list>
         </template>
-        <ion-button @click="goToLogin" full>Organizer</ion-button>
+        <ion-button @click="goToLoginAsOrganizer" full>Organizer</ion-button>
         <ion-row style="height:10px"/>
         <ion-button @click="goToLogin" full>Volunteer</ion-button>
       </ion-content>
@@ -32,9 +32,28 @@ export default {
       logo: Logo,
     }
   },
+  beforeCreate: function () {
+    if (this.$session.exists()) {
+      if(this.$session.has('session_id') == true){
+        this.$session.destroy()
+      }
+    }
+    if (!this.$session.exists()) {
+      this.$router.push("/");
+    }
+  },
   methods: {
     goToLogin () {
-      this.$router.push('/Login')
+      this.$session.start()
+      this.$session.set('is_organizer', false)
+
+      this.$router.push('/googlesignin')
+    },
+    goToLoginAsOrganizer () {
+      this.$session.start()
+      this.$session.set('is_organizer', true)
+
+      this.$router.push('/googlesignin')
     }
   }
 }

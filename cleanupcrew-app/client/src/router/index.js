@@ -5,7 +5,7 @@ import Login from '@/components/GoogleSignIn'
 import Search from '@/components/Search'
 import Dash from '@/components/Dash'
 import Event from '@/components/EventDisplay'
-//import GoogleSignIn from '@/components/GoogleSignIn'
+import GoogleSignIn from '@/components/GoogleSignIn'
 
 Vue.use(Router)
 
@@ -18,9 +18,9 @@ export default new Router({
       component: Index
     },
     {
-      path: '/login',
-      name: 'Log In',
-      component: Login
+      path: '/googlesignin',
+      name: 'Google Sign In',
+      component: GoogleSignIn
     },
     {
       path: '/search',
