@@ -8,7 +8,7 @@
  * @param regionRadius  The radius of the cleanup region.
  * @return Whether or not the user's location is within the cleanup region.
  */
-function userInRegion(userLat, userLong, originLat, originLong, regionRadius) {
+function inCleanupRegion(userLat, userLong, originLat, originLong, regionRadius) {
   originToUserLocation = computeDistance(userLat, userLong, originLat, originLong)  // Distance formula
   return originToUserLocation < radius;
 }
@@ -36,14 +36,14 @@ function computeDistance(lat1, lon1, lat2, lon2){
 }
 
 /*
- * Returns whether or not the date/time of the user's recorded location is within the cleanup's start and end time/date.
+ * Returns whether or not the date/time of the user's recorded location is between the cleanup's start and end time/date.
  *
  * @param utcDateUserLocation The date/time when the user's location was recorded in ISO-8601 format
  * @param utcDateCleanupStart  The date/time of the cleanup's start in ISO-8601 format
  * @param utcDateCleanupEnd    The date/time of the cleanup's end in ISO-8601 format
  * @return Whether or not user location's date/time is within the cleanup period.
  */
-function withinCleanupPeriod(utcDateUserLocation, utcDateCleanupStart, utcDateCleanupEnd) {
+function duringCleanupPeriod(utcDateUserLocation, utcDateCleanupStart, utcDateCleanupEnd) {
   var dateUserLocation = new Date(utcDateUserLocation);
   var dateCleanupStart = new Date(utcDateCLeanupStart);
   var dateCleanupEnd = new Date(utcDateCleanupEnd);
