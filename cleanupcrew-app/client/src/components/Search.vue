@@ -8,30 +8,47 @@
       </ion-header>
       <ion-content class="content" padding>
         <ion-searchbar showCancelButton placeholder="Cleanups"></ion-searchbar>
-        <ion-list>
-          <ion-item v-for="item of items" v-bind:key="item.id">
-            <ion-label @click="goToCleanup(item.id)" full>{{item.name}}</ion-label>
+        <ion-list @onLo>
+          <ion-item v-for="item of items" v-bind:key="item['public_id']">
+            <ion-label @click="goToCleanup(item['event_name'], item['public_id'], item['address'])" full>{{item['event_name']}}</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>
     </ion-page>
   </ion-app>
 </template>
-
 <script>
+import axios from "axios";
 export default {
   name: 'Search',
   data() {
     return {
-      items: [{id: 0, name: "test1"},{id: 1, name: "test2"},{id: 2, name: "test1"},
-              {id: 3, name: "test2"},{id: 4, name: "test1"},{id: 5, name: "test2"},
-              {id: 6, name: "test1"},{id: 7, name: "test2"},{id: 8, name: "test1"},
-              {id: 9, name: "test2"},{id: 10, name: "test1"},{id: 11, name: "test2"}]
+      items: [],
+      thing: "Troy, New York"
     }
   },
+  beforeCreate: function () {
+    if (!this.$session.exists()) {
+      this.$session.destroy()
+      this.$router.push("/");
+    }
+    axios.get("/api/all_events")
+      .then((response) => {
+        console.log(response.data);
+        if(response.data == ""){
+          console.log("No events populated")
+        } else {
+          this.items = response.data['event_arr'];
+        }
+      })
+      .catch((errors) => {
+        console.log("Database Error: Getting Event")
+        console.log(errors)
+      })
+  },
   methods: {
-    goToCleanup: function(eventID) {
-      this.$router.push('/event/'+eventID)
+    goToCleanup: function(eventName, publicID, eventLoc) {
+      this.$router.push('/event/'+eventName+'/'+publicID+'/'+eventLoc)
     }
   }
 }

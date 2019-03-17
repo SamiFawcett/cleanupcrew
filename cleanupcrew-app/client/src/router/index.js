@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Welcome'
-import Login from '@/components/GoogleSignIn'
 import Search from '@/components/Search'
 import Dash from '@/components/Dash'
 import Event from '@/components/EventDisplay'
@@ -34,14 +33,14 @@ export default new Router({
       component: Dash
     },
     {
-      path: '/event/:eventID',
+      path: '/event/:eventID/:publicID/:eventLoc/',
       name: 'EventDisplay',
       component: Event,
       props: true
     },
     {
       path: '/map',
-      name: 'Map',
+      name: 'MapTest',
       component: Map
     }
   ]

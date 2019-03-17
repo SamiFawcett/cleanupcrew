@@ -12,7 +12,6 @@
     </ion-page>
   </ion-app>
 </template>
-
 <script>
 export default {
   name: 'App',

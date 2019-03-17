@@ -28,11 +28,9 @@
     </ion-page>
   </ion-app>
 </template>
-
 <script>
 import Logo from "@/img/logo.png"
 import axios from "axios";
-
 export default {
   name: "GoogleSignIn",
   data () {
@@ -79,7 +77,6 @@ export default {
           console.log("Database Error: Getting User")
           console.log(errors)
         })
-
         // axios.post("/api/user?id_token=" + user_id + "&name=" + user_fullname + "&email=" + user_email + o_str)
         //     .then((response) => {
         //         console.log(response)
@@ -91,8 +88,6 @@ export default {
         //         console.log(errors)
         //         this.$router.push('/')
         //     })
-
-
     },
     onSignInError (error) {
       console.log('Big problem', error)
@@ -100,14 +95,12 @@ export default {
   }
 }
 </script>
-
 <style>
 .small-logo{
   width:40%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
 .g-signin-button {
   /* This is where you control how the button looks. Be creative! */
   display: inline-block;
@@ -119,7 +112,6 @@ export default {
   /* box-shadow: 0 3px 0 #0f69ff; */
   font-size: 16px;
 }
-
 .fa-google{
   padding-right:10px;
 }

@@ -21,10 +21,8 @@
     </ion-page>
   </ion-app>
 </template>
-
 <script>
 import Logo from "@/img/logo.png"
-
 export default {
   name: 'Welcome',
   data () {
@@ -46,19 +44,16 @@ export default {
     goToLogin () {
       this.$session.start()
       this.$session.set('is_organizer', false)
-
       this.$router.push('/googlesignin')
     },
     goToLoginAsOrganizer () {
       this.$session.start()
       this.$session.set('is_organizer', true)
-
       this.$router.push('/googlesignin')
     }
   }
 }
 </script>
-
 <style>
 .big-logo{
   width:50%;
