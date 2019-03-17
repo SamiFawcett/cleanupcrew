@@ -21,7 +21,7 @@
             </ion-list>
         </ion-item>
         <ion-row style="height:100px"/>
-        <ion-button type="button" @click="toggleJoin()" full>{{buttonDisplay}}</ion-button>
+        <ion-button type="submit" @click="toggleJoin()" full>{{buttonDisplay}}</ion-button>
       </ion-content>
     </ion-page>
   </ion-app>
