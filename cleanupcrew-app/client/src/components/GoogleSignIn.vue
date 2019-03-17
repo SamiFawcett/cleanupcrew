@@ -80,6 +80,19 @@ export default {
           console.log(errors)
         })
 
+        // axios.post("/api/user?id_token=" + user_id + "&name=" + user_fullname + "&email=" + user_email + o_str)
+        //     .then((response) => {
+        //         console.log(response)
+        //         this.$session.set('session_id', user_id)
+        //         this.$router.push('/search')
+        //     })
+        //     .catch((errors) => {
+        //         console.log("Database Error: Creating User")
+        //         console.log(errors)
+        //         this.$router.push('/')
+        //     })
+
+
     },
     onSignInError (error) {
       console.log('Big problem', error)
