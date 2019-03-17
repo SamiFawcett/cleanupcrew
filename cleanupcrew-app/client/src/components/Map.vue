@@ -11,5 +11,3 @@
     </ion-page>
   </ion-app>
 </template>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
