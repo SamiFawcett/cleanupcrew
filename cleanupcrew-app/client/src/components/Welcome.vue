@@ -26,7 +26,7 @@
 import Logo from "@/img/logo.png"
 
 export default {
-  name: 'App',
+  name: 'Welcome',
   data () {
     return {
       logo: Logo,

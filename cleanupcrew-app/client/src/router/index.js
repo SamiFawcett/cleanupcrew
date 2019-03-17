@@ -4,6 +4,7 @@ import Index from '@/components/Welcome'
 import Login from '@/components/GoogleSignIn'
 import Search from '@/components/Search'
 import Dash from '@/components/Dash'
+import Event from '@/components/EventDisplay'
 //import GoogleSignIn from '@/components/GoogleSignIn'
 
 Vue.use(Router)
@@ -30,6 +31,12 @@ export default new Router({
       path: '/dash',
       name: 'Dashboard',
       component: Dash
+    },
+    {
+      path: '/event/:eventID',
+      name: 'EventDisplay',
+      component: Event,
+      props: true
     }
   ]
 })
