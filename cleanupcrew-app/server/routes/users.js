@@ -28,6 +28,7 @@ router.post('/api/user', function(req, res, next){
   };
   var db = mongoUtil.getDb();
   db.collection('cc_users').insertOne(user);
+  res.send('success');
   console.log("successfully added user to database");
 })
 

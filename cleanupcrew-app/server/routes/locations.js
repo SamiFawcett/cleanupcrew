@@ -22,7 +22,7 @@ router.post('/loc', function(req, res, next){
   var db = mongoUtil.getDb();
   var c = db.collection('cc_loc').insertOne(loc);
   console.log("successfully added location to database");
-
+  res.send('success');
 })
 
 
@@ -37,7 +37,7 @@ router.get('/api/loc', function(req, res, next){
 });
 
 //get locations by name id
-router.get("/api/loc", function(req, res, next){
+router.get("/api/loc_by_name", function(req, res, next){
   var db = mongoUtil.getDb();
   var name_id = req.query['name_id'];
   var loc_arr = {};
@@ -49,7 +49,7 @@ router.get("/api/loc", function(req, res, next){
 })
 
 //get locations by event id
-router.get("/api/loc", function(req, res, next){
+router.get("/api/loc_by_event", function(req, res, next){
   var db = mongoUtil.getDb();
   var name_id = req.query['event_id'];
   var loc_arr = {};
