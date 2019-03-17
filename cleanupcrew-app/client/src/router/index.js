@@ -41,7 +41,7 @@ export default new Router({
     },
     {
       path: '/map',
-      name: 'MapTest',
+      name: 'Map',
       component: Map
     }
   ]
