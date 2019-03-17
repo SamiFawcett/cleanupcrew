@@ -13,29 +13,37 @@
 </template>
 
 <script>
-  showMap(10, 10, "Glassboro, NJ");
-
-  function showMap(lat,lang,address) {
-    var myLatLng = {lat: lat, lng: lang};
-
-    var map = new google.maps.Map(document.getElementById('map_canvas'), {
-      zoom: 17,
-      center: myLatLng
-    });
-
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      title: address,
+  marker = new google.maps.Marker(
+  {
+      map:map,
       draggable:true,
-    });
+      animation: google.maps.Animation.DROP,
+      position: results[0].geometry.location
+  });
+  google.maps.event.addListener(marker, 'dragend', function()
+  {
+      geocodePosition(marker.getPosition());
+  });
 
-    google.maps.event.addListener(marker, 'dragend', function(marker){
-        var latLng = marker.latLng;
-        currentLatitude = latLng.lat();
-        currentLongitude = latLng.lng();
-        jQ("#latitude").val(currentLatitude);
-        jQ("#longitude").val(currentLongitude);
-     });
+  function geocodePosition(pos)
+  {
+     geocoder = new google.maps.Geocoder();
+     geocoder.geocode
+      ({
+          latLng: pos
+      },
+          function(results, status)
+          {
+              if (status == google.maps.GeocoderStatus.OK)
+              {
+                  $("#mapSearchInput").val(results[0].formatted_address);
+                  $("#mapErrorMsg").hide(100);
+              }
+              else
+              {
+                  $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+              }
+          }
+      );
   }
-</script>
+  </script>
